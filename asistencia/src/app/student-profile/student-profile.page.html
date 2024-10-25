@@ -17,13 +17,19 @@
     <h3 *ngIf="correo">Correo: {{ correo }}</h3>
   </ion-text>
 
+  <!-- Sección de escaneo QR -->
   <div class="qr-scan">
     <ion-text>
       <h2>Escanea el código QR</h2>
     </ion-text>
-    <div class="qr-camera">
-      <ion-icon name="camera-outline"></ion-icon>
-    </div>
+
+    <!-- Aquí se muestra el componente para escanear códigos QR -->
+    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+    <!-- Muestra el resultado del escaneo QR -->
+    <ion-text *ngIf="qrResultString">
+      <p>Resultado del QR: {{ qrResultString }}</p>
+    </ion-text>
   </div>
 </ion-content>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsumoapiService } from '../service/consumoapi.service'; 
 import { AlertController } from '@ionic/angular';  
+import { ZXingScannerComponent } from '@zxing/ngx-scanner'; // Importamos la biblioteca de escaneo QR
 
 @Component({
   selector: 'app-student-profile',
@@ -13,6 +14,7 @@ export class StudentProfilePage implements OnInit {
   receivedId: number | undefined;
   fotoPerfil: string | undefined;
   correo: string | undefined;
+  qrResultString: string | null = null; // Aquí almacenaremos el resultado del escaneo
 
   constructor(
     private router: Router,
@@ -30,7 +32,13 @@ export class StudentProfilePage implements OnInit {
     }
   }
 
-  // Función para mostrar el alert de confirmación
+  // Este método se ejecuta cuando se escanea un código QR
+  onCodeResult(resultString: string) {
+    this.qrResultString = resultString;
+    console.log('Resultado del código QR:', this.qrResultString);
+    // Puedes agregar aquí la lógica para procesar el código escaneado
+  }
+
   async cerrarSesion() {
     const alert = await this.alertController.create({
       header: 'Confirmar cierre de sesión',

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthserviceService } from '../service/authservice.service';
 import { ConsumoapiService } from '../service/consumoapi.service';
 import { AlertController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-login',
@@ -33,59 +34,83 @@ export class LoginPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.limpiarFormulario(); //Para limpiar cada vez que entramos a la pagina
+    this.limpiarFormulario(); //Para limpiar cada vez que entramos a la página
   }
 
-  async login() {
-    if (this.usuario.valid) {
-      const user = this.usuario.value.user;
-      const pass = this.usuario.value.pass;
-  
-      // Llamada a la API para el login
-      this.apiService.login(user, pass).subscribe(
-        (response: any) => {
-          console.log('Respuesta de la API:', response);
-          if (response.tipoPerfil === 1) {
-            // Perfil Profesor
-            this.authService.login();
-            this.router.navigate(['/professor-profile'], {
-              state: { 
-                nombre: response.nombre, 
-                id: response.id,
-                correo: response.correo,
-                fotoPerfil: response.fotoPerfil
-              }
+
+
+async login() {
+  if (this.usuario.valid) {
+    const user = this.usuario.value.user;
+    const pass = this.usuario.value.pass;
+
+    // Llamada a la API para el login
+    this.apiService.login(user, pass).subscribe(
+      async (response: any) => {
+        console.log('Respuesta de la API:', response);
+        if (response.tipoPerfil === 1) {
+          // Perfil Profesor
+          this.authService.login();
+          this.router.navigate(['/professor-profile'], {
+            state: { 
+              nombre: response.nombre, 
+              id: response.id,
+              correo: response.correo,
+              fotoPerfil: response.fotoPerfil
+            }
+          });
+        } else if (response.tipoPerfil === 2) {
+          // Perfil Estudiante
+          console.log('Navegando al perfil de estudiante');
+          this.authService.login();
+
+          try {
+            // Abrimos la cámara directamente
+            const image = await Camera.getPhoto({
+              quality: 90,
+              allowEditing: false,
+              resultType: CameraResultType.Uri,
+              source: CameraSource.Camera // Forzar el uso de la cámara nativa
             });
-          } else if (response.tipoPerfil === 2) {
-            // Perfil Estudiante
-            console.log('Navegando al perfil de estudiante');
-            this.authService.login();
+
+            console.log('Imagen capturada:', image);
+
             this.router.navigate(['/student-profile'], {
               state: { 
                 nombre: response.nombre, 
                 id: response.id,
                 correo: response.correo,
-                fotoPerfil: response.fotoPerfil
+                fotoPerfil: response.fotoPerfil,
+                fotoCapturada: image.webPath // Pasamos la imagen capturada
               }
             });
-          } else {
-            console.log('Perfil no válido');
+          } catch (error) {
+            console.error('Error al capturar la imagen:', error);
+            const alert = await this.alertController.create({
+              header: 'Error',
+              message: 'No se pudo acceder a la cámara. Inténtalo de nuevo.',
+              buttons: ['OK']
+            });
+            await alert.present();
           }
-        },
-        async (error: any) => {
-          console.error('Error en el login:', error);
-          const alert = await this.alertController.create({
-            header: 'Error',
-            message: 'Credenciales incorrectas, por favor inténtalo de nuevo.',
-            buttons: ['OK']
-          });
-          await alert.present();
+
+        } else {
+          console.log('Perfil no válido');
         }
-      );
-      
-      
-    }
+      },
+      async (error: any) => {
+        console.error('Error en el login:', error);
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Credenciales incorrectas, por favor inténtalo de nuevo.',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    );
   }
+}
+
   
   // Nueva función para limpiar el formulario y el almacenamiento local
   limpiarFormulario() {
