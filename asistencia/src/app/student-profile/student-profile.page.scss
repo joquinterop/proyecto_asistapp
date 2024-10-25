@@ -5,7 +5,7 @@
 
   img {
     border-radius: 50%;
-    border: 4px solid #28a745; /* Color verde para diferenciar del profesor */
+    border: 4px solid #28a745; 
     width: 120px;
     height: 120px;
   }
@@ -29,18 +29,31 @@
     margin-bottom: 20px;
   }
 
+  /* Ajuste del contenedor de la cámara QR */
   .qr-camera {
-    width: 200px;
-    height: 200px;
+    width: 80%; /* Limita el ancho de la cámara al 80% del contenedor */
+    max-width: 300px; /* Define un ancho máximo para pantallas grandes */
+    height: 300px; /* Mantén una proporción adecuada */
     background-color: #f1f1f1;
     border: 2px dashed #007bff;
+    border-radius: 20px; /* Bordes redondeados para un look más moderno */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; /* Para facilitar el diseño de la superposición */
 
+    /* Icono de la cámara antes de escanear */
     ion-icon {
       font-size: 60px;
       color: #007bff;
+    }
+  }
+
+  /* Ajuste para pantallas más pequeñas */
+  @media (max-width: 600px) {
+    .qr-camera {
+      width: 90%; /* Un poco más ancho en pantallas pequeñas */
+      height: 250px;
     }
   }
 }

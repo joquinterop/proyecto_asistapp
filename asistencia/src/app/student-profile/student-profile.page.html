@@ -5,6 +5,7 @@
 </ion-header>
 
 <br>
+
 <ion-content>
   <!-- Imagen del Estudiante -->
   <div class="student-image">
@@ -23,8 +24,10 @@
       <h2>Escanea el código QR</h2>
     </ion-text>
 
-    <!-- Aquí se muestra el componente para escanear códigos QR -->
-    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+    <!-- Contenedor ajustado para el escaneo de códigos QR -->
+    <div class="qr-camera">
+      <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+    </div>
 
     <!-- Muestra el resultado del escaneo QR -->
     <ion-text *ngIf="qrResultString">
