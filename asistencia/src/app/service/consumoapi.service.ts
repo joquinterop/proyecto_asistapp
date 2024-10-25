@@ -34,4 +34,8 @@ export class ConsumoapiService {
       retry(1)
     );
   }
+
+  obtenerProfesorPorCurso(cursoId: number): Observable<any> {
+    return this.httpClient.get(`${this.apiURL}/cursos/${cursoId}/profesor`);
+  }
 }

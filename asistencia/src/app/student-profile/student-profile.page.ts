@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsumoapiService } from '../service/consumoapi.service'; 
 import { AlertController } from '@ionic/angular';  
-import { ZXingScannerComponent } from '@zxing/ngx-scanner'; // Importamos la biblioteca de escaneo QR
 
 @Component({
   selector: 'app-student-profile',
@@ -14,7 +13,7 @@ export class StudentProfilePage implements OnInit {
   receivedId: number | undefined;
   fotoPerfil: string | undefined;
   correo: string | undefined;
-  qrResultString: string | null = null; // Aquí almacenaremos el resultado del escaneo
+  qrResultString: string | null = null;
 
   constructor(
     private router: Router,
@@ -23,7 +22,6 @@ export class StudentProfilePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtenemos los datos del estudiante desde el estado del login
     if (history.state) {
       this.nombre = history.state.nombre;
       this.receivedId = history.state.id;
@@ -32,11 +30,39 @@ export class StudentProfilePage implements OnInit {
     }
   }
 
-  // Este método se ejecuta cuando se escanea un código QR
+  // Método que se ejecuta cuando se escanea un código QR
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
     console.log('Resultado del código QR:', this.qrResultString);
-    // Puedes agregar aquí la lógica para procesar el código escaneado
+
+    try {
+      // Convertimos el QR a JSON para obtener los datos
+      const qrData = JSON.parse(resultString);
+      const cursoId = qrData.curso_id;
+      const alumnoId = this.receivedId;
+
+      if (alumnoId !== undefined && cursoId) {
+        // Primero, obtenemos el profesor ID basado en el curso ID
+        this.consumoAPI.obtenerProfesorPorCurso(cursoId).subscribe(
+          (profesorData: any) => {
+            const profesorId = profesorData.profesor_id;
+
+            // Ahora que tenemos profesorId, actualizamos la asistencia
+            this.consumoAPI.actualizarAsistencia(profesorId, cursoId, alumnoId).subscribe(
+              () => console.log('Asistencia actualizada correctamente en el backend'),
+              (error) => console.error('Error al actualizar asistencia:', error)
+            );
+          },
+          (error) => {
+            console.error('Error al obtener el ID del profesor:', error);
+          }
+        );
+      } else {
+        console.error('ID de alumno o datos del QR no definidos');
+      }
+    } catch (error) {
+      console.error('Error al procesar el QR:', error);
+    }
   }
 
   async cerrarSesion() {

@@ -37,15 +37,20 @@ export class AsignaturaPage implements OnInit {
     const asignatura = this.detallesAsignatura.nombre;
     const seccion = this.detallesAsignatura.seccion;
     const fecha = format(new Date(), 'yyyy-MM-dd');
-
+    const profesorId = history.state.id;  // Usamos el ID del profesor
+    const cursoId = this.detallesAsignatura.id; // ID del curso actual
+  
     this.qrAsignaturaData = JSON.stringify({
+      profesor_id: profesorId,
+      curso_id: cursoId,
       asignatura: asignatura,
       seccion: seccion,
       fecha: fecha,
     });
-
+  
     console.log('QR Code data:', this.qrAsignaturaData);
   }
+  
 
   // Función para actualizar el estado de un alumno al escanear el QR
   actualizarEstadoAlumno(alumnoId: number) {
