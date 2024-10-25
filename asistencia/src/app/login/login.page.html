@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>INICIO DE SESIÓN</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">    
+  <div class="image-circle">
+    <img src="assets/images/logo.png" alt="Imagen Circular">
+  </div>
+
+  <form [formGroup]="usuario" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" formControlName="user"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="pass"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button expand="block" type="submit" [disabled]="!usuario.valid">Iniciar Sesión</ion-button>
+  </form>
+
+  <div class="additional-buttons">
+    <ion-button expand="block" fill="clear" class="forgot-password-button" (click)="goToResetPassword()">
+      Olvidé mi contraseña
+    </ion-button>
+  </div>
+</ion-content>

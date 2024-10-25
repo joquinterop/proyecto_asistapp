@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>RESTABLECER CONTRASEÑA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="image-circle">
+    <img src="assets/images/logo.png" alt="Logo Circular">
+  </div>
+
+  <div class="reset-password-container">
+    <form>
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" required></ion-input>
+      </ion-item>
+      <br>
+      <ion-button expand="block" type="submit">
+        Continuar
+      </ion-button>
+    </form>
+
+    <div class="additional-buttons">
+      <ion-button expand="block" fill="clear" class="back-to-login-button" (click)="goToLogin()">
+        Volver al Inicio de Sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

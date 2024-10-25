@@ -1,0 +1,71 @@
+ion-header {
+  --background: #f8f8f8;
+  --color: #333;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+}
+
+.detalles-asignatura-card {
+  padding: 16px;
+  text-align: center;
+}
+
+.imagen-asignatura-card {
+  border-radius: 10px;
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.titulo-asignatura-card {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 16px 0;
+}
+
+.seccion-asignatura-card, .alumnos-asignatura-card {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 8px 0;
+}
+
+.qr-asignatura-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  img {
+    width: 200px;
+    height: auto;
+  }
+}
+
+.tabla-alumnos-asignatura {
+  margin: 20px auto;
+  max-width: 90%;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Aquí centramos el título de la lista de alumnos */
+ion-card-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil del Profesor</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+
+<ion-content>
+
+  <!-- Tarjeta para el perfil del profesor -->
+  <ion-card class="tarjeta-perfil-profesor">
+    <ion-card-content>
+      <div class="profesor-image">
+        <img [src]="fotoPerfil" alt="Foto del Profesor">
+      </div>
+
+      <ion-text class="center">
+        <h1>{{ nombre }}</h1>
+        <!-- Mostramos el correo del profesor -->
+        <h3 *ngIf="correo">Correo: {{ correo }}</h3>
+        <h3>Fecha: {{ fecha }}</h3>
+        <h4>Cursos impartidos: {{ cursos.length }}</h4>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- cursos del profesor -->
+  <ion-list>
+    <ion-item *ngFor="let curso of cursos" (click)="navegar(curso)">
+      <ion-avatar slot="start">
+        <img [src]="curso.imagen" alt="{{ curso.nombre }}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ curso.nombre }}</h2>
+        <p>{{ curso.seccion }}</p>
+        <p>Alumnos: {{ curso.alumnos.length }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment value="default">
+      <ion-segment-button value="inicio">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="mensajes">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <ion-label>Mensajes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cerrar-sesion" (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

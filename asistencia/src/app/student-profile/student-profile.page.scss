@@ -1,0 +1,155 @@
+.student-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    border-radius: 50%;
+    border: 4px solid #28a745; /* Color verde para diferenciar del profesor */
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.qr-scan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  .qr-camera {
+    width: 200px;
+    height: 200px;
+    background-color: #f1f1f1;
+    border: 2px dashed #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-icon {
+      font-size: 60px;
+      color: #007bff;
+    }
+  }
+}
+
+ion-footer {
+  ion-toolbar {
+    --background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  ion-segment {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  ion-segment-button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+
+    ion-label {
+      display: block;
+      margin-top: 5px;
+    }
+  }
+
+  .footer-button {
+    --color: #007bff;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+
+    &.active {
+      --background: #007bff;
+      --color: #fff;
+    }
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .student-image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qr-camera {
+    width: 150px;
+    height: 150px;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      flex-direction: row;
+      overflow-x: auto;
+    }
+
+    ion-segment {
+      flex-direction: row;
+    }
+
+    ion-segment-button {
+      ion-label {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .student-image img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .qr-camera {
+    width: 250px;
+    height: 250px;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      flex-direction: row;
+    }
+
+    ion-segment {
+      flex-direction: row;
+    }
+
+    ion-segment-button {
+      ion-label {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+<ion-content>
+  <!-- Botón de volver -->
+  <ion-button size="small" class="boton-salir">
+    <ion-icon slot="start" name="arrow-back"></ion-icon>
+    Volver
+  </ion-button>
+
+
+  <div class="asignatura-image">
+    <img src="assets/images/reino-unido.png" alt="Imagen de Inglés">
+  </div>
+
+  <!-- Nombre de la asignatura -->
+  <ion-text class="center">
+    <h1>Inglés</h1>
+  </ion-text>
+
+  <!-- Sección y fecha del día -->
+  <div class="info-section">
+    <p><strong>Sección:</strong> 1</p>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+  </div>
+
+  <!-- Código QR -->
+  <div class="qr-code">
+    <img src="assets/images/qr_ingles_1.png" alt="Código QR">
+  </div>
+
+  <!-- Lista de alumnos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de Alumnos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>Juan Pérez</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Ana Gómez</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Pedro Martínez</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Laura Rodríguez</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Carlos Fernández</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Maria López</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Javier Martínez</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Isabel Castro</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Alberto Pérez</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Paola Torres</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Antonio Silva</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Silvia Romero</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Ricardo Guzmán</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Lucía Sánchez</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Felipe Delgado</h2>
+          </ion-label>
+          <ion-badge color="success" class="status presente">Presente</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Paola Vargas</h2>
+          </ion-label>
+          <ion-badge color="danger" class="status ausente">Ausente</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment value="default">
+      <ion-segment-button value="inicio">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="mensajes">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <ion-label>Mensajes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="asignaturas">
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-label>Asignaturas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,186 @@
+.boton-salir {
+  --background: #007bff;
+  --color: #ffff;
+  margin-bottom: 20px;
+}
+
+.profesor-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    border-radius: 50%;
+    border: 4px solid #007bff;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ion-item {
+  --background: #f8f9fa;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+ion-thumbnail {
+  margin-right: 10px;
+}
+
+ion-thumbnail img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+ion-label h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ion-label p {
+  font-size: 14px;
+  color: #666;
+}
+
+ion-footer {
+  ion-toolbar {
+    --background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  ion-segment {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row; 
+  }
+
+  ion-segment-button {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+    padding: 10px;
+    
+    ion-icon {
+      font-size: 20px;
+    }
+
+    ion-label {
+      display: block; 
+      margin-top: 5px;
+    }
+  }
+
+  .footer-button {
+    --color: #007bff;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+
+    &.active {
+      --background: #007bff;
+      --color: #fff;
+    }
+  }
+}
+
+/* Estilos de la nueva tarjeta para el perfil del profesor */
+.tarjeta-perfil-profesor {
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+
+  ion-card-content {
+    padding: 20px;
+  }
+
+  ion-text h1, ion-text h2, ion-text h3, ion-text h4 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .profesor-image img {
+    width: 100px;
+    height: 100px;
+  }
+
+  ion-label h2 {
+    font-size: 16px;
+  }
+
+  ion-label p {
+    font-size: 12px;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      flex-direction: row; 
+      overflow-x: auto; 
+    }
+
+    ion-segment {
+      flex-direction: row; 
+    }
+
+    ion-segment-button {
+      ion-label {
+        display: none; 
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .profesor-image img {
+    width: 150px;
+    height: 150px;
+  }
+
+  ion-label h2 {
+    font-size: 20px;
+  }
+
+  ion-label p {
+    font-size: 16px;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      flex-direction: row; 
+    }
+
+    ion-segment {
+      flex-direction: row; 
+    }
+
+    ion-segment-button {
+      ion-label {
+        display: block; 
+      }
+    }
+  }
+}

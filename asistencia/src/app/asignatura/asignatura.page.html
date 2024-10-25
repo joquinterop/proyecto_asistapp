@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ detallesAsignatura?.nombre }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/professor-profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Tarjeta para los detalles de la asignatura y el código QR -->
+  <ion-card *ngIf="detallesAsignatura">
+    <ion-card-header>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="detalles-asignatura-card">
+        <img [src]="detallesAsignatura.imagen" alt="{{ detallesAsignatura.nombre }}" class="imagen-asignatura-card" />
+        <h2 class="titulo-asignatura-card">{{ detallesAsignatura.nombre }}</h2>
+        <p class="seccion-asignatura-card">Sección: {{ detallesAsignatura.seccion }}</p>
+        <p class="alumnos-asignatura-card">Cantidad de Alumnos: {{ alumnosAsignatura.length }}</p>
+        <!-- Código QR justo debajo de los detalles de la asignatura -->
+        <div class="qr-asignatura-card">
+          <qrcode [qrdata]="qrAsignaturaData" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Listado de Alumnos dentro de una tarjeta separada -->
+  <ion-card *ngIf="alumnosAsignatura.length > 0">
+    <ion-card-header>
+      <ion-card-title>Lista de Alumnos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="tabla-alumnos-asignatura">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alumno of alumnosAsignatura">
+              <td>{{ alumno.nombre }} {{ alumno.apellido }}</td>
+              <td *ngIf="alumno.status === 0">Ausente</td>
+              <td *ngIf="alumno.status === 1">Presente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mensaje si no hay alumnos -->
+  <div *ngIf="alumnosAsignatura.length === 0">
+    <p>No hay alumnos inscritos en esta asignatura.</p>
+  </div>
+</ion-content>

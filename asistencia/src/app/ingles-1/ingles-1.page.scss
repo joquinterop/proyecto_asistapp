@@ -1,0 +1,197 @@
+.boton-salir {
+    --background: #007bff;
+    --color: #ffff;
+    margin-bottom: 20px;
+  }
+  
+  .asignatura-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    img {
+      border-radius: 10px;
+      width: 100px; 
+      height: auto;
+    }
+  }
+  
+  .center {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info-section {
+    text-align: center;
+    margin-bottom: 20px;
+  
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  }
+  
+  .qr-code {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    img {
+      width: 200px; 
+      height: auto;
+    }
+  }
+  
+  ion-card {
+    margin: 20px;
+  }
+  
+  ion-item {
+    --background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between; 
+  }
+  
+  ion-label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .status.presente {
+    color: white;
+    font-weight: bold;
+    background-color: green;
+  }
+  
+  .status.ausente {
+    color: white;
+    font-weight: bold;
+    background-color: red;
+  }
+  
+  ion-footer {
+    ion-toolbar {
+      --background: #f8f9fa;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+  
+    ion-segment {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-direction: row; 
+    }
+  
+    ion-segment-button {
+      flex: 1; 
+    }
+  
+    .footer-button {
+      --color: #007bff;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+  
+      ion-icon {
+        font-size: 20px;
+      }
+  
+      &.active {
+        --background: #007bff;
+        --color: #fff;
+      }
+    }
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 600px) {
+    .asignatura-image img {
+      width: 80px; 
+    }
+  
+    .qr-code img {
+      width: 150px; 
+    }
+  
+    ion-label h2 {
+      font-size: 16px;
+    }
+  
+    ion-label p {
+      font-size: 12px;
+    }
+  
+    ion-footer {
+      ion-toolbar {
+        flex-direction: row; 
+        overflow-x: auto;
+      }
+  
+      ion-segment {
+        flex-direction: row;
+      }
+  
+      ion-segment-button {
+        ion-label {
+          display: none; 
+        }
+  
+        ion-icon {
+          font-size: 24px; 
+        }
+      }
+      
+      .footer-button {
+        margin: 0;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  @media (min-width: 600px) {
+    .asignatura-image img {
+      width: 100px; 
+    }
+  
+    .qr-code img {
+      width: 200px; 
+    }
+  
+    ion-label h2 {
+      font-size: 20px;
+    }
+  
+    ion-label p {
+      font-size: 16px;
+    }
+  
+    ion-footer {
+      ion-toolbar {
+        flex-direction: row;
+      }
+  
+      ion-segment {
+        flex-direction: row; 
+      }
+  
+      ion-segment-button {
+        ion-label {
+          display: block; 
+        }
+      }
+  
+      .footer-button {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+  

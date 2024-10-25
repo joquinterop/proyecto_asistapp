@@ -1,0 +1,63 @@
+
+<ion-header [translucent]="true">
+  <ion-button size="small" class="boton-salir" (click)="volver()">
+    <ion-icon slot="start" name="arrow-back"></ion-icon>
+    Volver
+  </ion-button>
+  <ion-toolbar>
+    <ion-title>Escanea el codigo QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>QR Code</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwKhCxEmS969psqhVKUpQMmozoWS5REy8w2g&s" alt="QR Code" class="qr-image"/>
+        <p class="error-message"></p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Alumnos</ion-card-title>
+    <ion-card-subtitle></ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-thumbnail>
+        <ion-label>Fernando Ronda</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-thumbnail>
+        <ion-label>Jose</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-thumbnail>
+        <ion-label>Valentin</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-thumbnail slot="start" >
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-thumbnail>
+        <ion-label>Juan</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

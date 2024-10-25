@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil del Estudiante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<br>
+<ion-content>
+  <!-- Imagen del Estudiante -->
+  <div class="student-image">
+    <img [src]="fotoPerfil" alt="Foto del Estudiante">
+  </div>
+
+  <!-- Mostramos los datos del estudiante -->
+  <ion-text class="center">
+    <h1>{{ nombre }}</h1>
+    <h3 *ngIf="correo">Correo: {{ correo }}</h3>
+  </ion-text>
+
+  <div class="qr-scan">
+    <ion-text>
+      <h2>Escanea el código QR</h2>
+    </ion-text>
+    <div class="qr-camera">
+      <ion-icon name="camera-outline"></ion-icon>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment value="default">
+      <ion-segment-button value="inicio">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="mensajes">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <ion-label>Mensajes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cerrar-sesion" (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
