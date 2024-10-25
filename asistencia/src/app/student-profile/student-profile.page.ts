@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsumoapiService } from '../service/consumoapi.service'; 
-import { AlertController } from '@ionic/angular';  
+import { ToastController, AlertController } from '@ionic/angular';  
 
 @Component({
   selector: 'app-student-profile',
@@ -18,6 +18,7 @@ export class StudentProfilePage implements OnInit {
   constructor(
     private router: Router,
     private consumoAPI: ConsumoapiService, 
+    private toastController: ToastController,
     private alertController: AlertController  
   ) {}
 
@@ -33,12 +34,13 @@ export class StudentProfilePage implements OnInit {
   // Método que se ejecuta cuando se escanea un código QR
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
-    console.log('Resultado del código QR:', this.qrResultString);
 
     try {
       // Convertimos el QR a JSON para obtener los datos
       const qrData = JSON.parse(resultString);
       const cursoId = qrData.curso_id;
+      const asignatura = qrData.asignatura;
+      const fecha = qrData.fecha;
       const alumnoId = this.receivedId;
 
       if (alumnoId !== undefined && cursoId) {
@@ -49,7 +51,17 @@ export class StudentProfilePage implements OnInit {
 
             // Ahora que tenemos profesorId, actualizamos la asistencia
             this.consumoAPI.actualizarAsistencia(profesorId, cursoId, alumnoId).subscribe(
-              () => console.log('Asistencia actualizada correctamente en el backend'),
+              async () => {
+                // Mostramos el mensaje de éxito con detalles
+                const toast = await this.toastController.create({
+                  message: `Asistencia confirmada en ${asignatura} el día ${fecha}`,
+                  duration: 3000,
+                  position: 'middle',
+                  color: 'success'
+                });
+                await toast.present();
+                console.log('Asistencia actualizada correctamente en el backend');
+              },
               (error) => console.error('Error al actualizar asistencia:', error)
             );
           },

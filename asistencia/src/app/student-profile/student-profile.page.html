@@ -28,11 +28,6 @@
     <div class="qr-camera">
       <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
     </div>
-
-    <!-- Muestra el resultado del escaneo QR -->
-    <ion-text *ngIf="qrResultString">
-      <p>Resultado del QR: {{ qrResultString }}</p>
-    </ion-text>
   </div>
 </ion-content>
 
