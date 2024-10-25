@@ -43,8 +43,9 @@
           <tbody>
             <tr *ngFor="let alumno of alumnosAsignatura">
               <td>{{ alumno.nombre }} {{ alumno.apellido }}</td>
-              <td *ngIf="alumno.status === 0">Ausente</td>
-              <td *ngIf="alumno.status === 1">Presente</td>
+              <td [ngClass]="alumno.status === 1 ? 'presente' : 'ausente'">
+                {{ alumno.status === 1 ? 'Presente' : 'Ausente' }}
+              </td>
             </tr>
           </tbody>
         </table>

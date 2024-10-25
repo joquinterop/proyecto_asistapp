@@ -63,9 +63,19 @@ ion-toolbar {
   }
 }
 
-/* Aquí centramos el título de la lista de alumnos */
+
 ion-card-title {
   text-align: center;
   font-size: 1.5em;
+  font-weight: bold;
+}
+
+.presente {
+  color: green;
+  font-weight: bold;
+}
+
+.ausente {
+  color: red;
   font-weight: bold;
 }
