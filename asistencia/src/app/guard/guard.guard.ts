@@ -8,7 +8,7 @@ export const guardGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (authService.isLoggedIn()) {
-    const role = authService.getRole(); // Obtener el rol
+    const role = authService.getRole(); 
     const targetRoute = state.url;
 
     // Permitir acceso según el rol y la ruta
@@ -16,7 +16,7 @@ export const guardGuard: CanActivateFn = (route, state) => {
         (role === 2 && targetRoute.includes('/student-profile'))) {
       return true;
     } else {
-      return router.createUrlTree(['/login']); // Redirigir a login si la ruta no coincide
+      return router.createUrlTree(['/login']);
     }
   } else {
     return router.createUrlTree(['/login']);
