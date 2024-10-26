@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AsignaturaPage } from './asignatura/asignatura.page';
 import { guardGuard } from './guard/guard.guard';
 
 const routes: Routes = [
@@ -45,12 +44,11 @@ const routes: Routes = [
   },
   {
     path: 'reiniciar-contrasena',
-    loadChildren: () => import('./reiniciar-contrasena/reiniciar-contrasena.module').then( m => m.ReiniciarContrasenaPageModule),
-    canActivate: [guardGuard]
+    loadChildren: () => import('./reiniciar-contrasena/reiniciar-contrasena.module').then(m => m.ReiniciarContrasenaPageModule)
   },
   {
     path: '**',
-    loadChildren: () => import('./error-404/error-404.module').then( m => m.Error404PageModule)
+    loadChildren: () => import('./error-404/error-404.module').then(m => m.Error404PageModule)
   }
 ];
 

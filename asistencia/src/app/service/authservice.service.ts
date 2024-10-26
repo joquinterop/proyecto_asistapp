@@ -6,18 +6,25 @@ import { Injectable } from '@angular/core';
 export class AuthserviceService {
 
   private authenticated = false;
+  private role: number | null = null; // Guardará el rol del usuario (1 = profesor, 2 = alumno)
 
   constructor() {}
   
-  isLoggedIn(){
-    return this.authenticated; //Estado que retornara la clase;
+  isLoggedIn() {
+    return this.authenticated; 
   }
 
-  login(){
-    this.authenticated = true; //   Cambia el estado si el login es exitoso
+  getRole() {
+    return this.role; // Devuelve el rol actual
   }
 
-  logout(){
-    this.authenticated = false; //Cambia el estado para salir de la app
+  login(role: number) {
+    this.authenticated = true;
+    this.role = role; // Establece el rol del usuario cuando inicia sesión
+  }
+
+  logout() {
+    this.authenticated = false;
+    this.role = null; // Resetea el rol al cerrar sesión
   }
 }

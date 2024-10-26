@@ -6,7 +6,6 @@ import { ConsumoapiService } from '../service/consumoapi.service';
 import { AlertController } from '@ionic/angular'; 
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; 
 
-
 @Component({
   selector: 'app-login', 
   templateUrl: './login.page.html',
@@ -14,7 +13,6 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class LoginPage implements OnInit {
   usuario: FormGroup; 
-
 
   constructor(
     private fb: FormBuilder, 
@@ -29,7 +27,6 @@ export class LoginPage implements OnInit {
       pass: ['', [Validators.required]], 
     });
   }
-
 
   ngOnInit() {
     this.limpiarFormulario(); 
@@ -51,7 +48,7 @@ export class LoginPage implements OnInit {
           console.log('Respuesta de la API:', response);
           if (response.tipoPerfil === 1) {
             // Si el perfil es de profesor
-            this.authService.login(); 
+            this.authService.login(1); // Establece el rol del profesor en el servicio de autenticación
             this.router.navigate(['/professor-profile'], { 
               state: { 
                 nombre: response.nombre, 
@@ -63,7 +60,7 @@ export class LoginPage implements OnInit {
           } else if (response.tipoPerfil === 2) {
             // Si el perfil es de estudiante
             console.log('Navegando al perfil de estudiante');
-            this.authService.login(); 
+            this.authService.login(2); // Establece el rol del estudiante en el servicio de autenticación
             this.router.navigate(['/student-profile'], {
               state: { 
                 nombre: response.nombre, 
@@ -89,7 +86,6 @@ export class LoginPage implements OnInit {
     }
   }
   
- 
   limpiarFormulario() {
     this.usuario.reset();
     localStorage.clear();
