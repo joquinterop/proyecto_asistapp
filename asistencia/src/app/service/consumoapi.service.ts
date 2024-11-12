@@ -40,4 +40,14 @@ export class ConsumoapiService {
   obtenerProfesorPorCurso(cursoId: number): Observable<any> {
     return this.httpClient.get(`${this.apiURL}/cursos/${cursoId}/profesor`, this.httpOptions);
   }
+  
+// Método para obtener los alumnos de un curso en ConsumoapiService
+obtenerAlumnos(cursoId: number): Observable<any> {
+  return this.httpClient.get(`${this.apiURL}/cursos/${cursoId}/alumnos`, this.httpOptions).pipe(
+    retry(1)
+  );
 }
+
+}
+
+

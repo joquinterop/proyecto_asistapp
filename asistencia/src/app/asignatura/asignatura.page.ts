@@ -22,11 +22,27 @@ export class AsignaturaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.cargarDatosAsignatura();
+    this.generateQR();
+
+    // Refresca la lista de alumnos cada 5 segundos (ajusta el tiempo si es necesario)
+    setInterval(() => {
+      this.cargarDatosAsignatura();
+    }, 2000);
+  }
+
+  // Función para cargar los datos de la asignatura
+  cargarDatosAsignatura() {
     if (this.detallesAsignatura) {
-      // Cargar la lista de alumnos de la asignatura
-      this.alumnosAsignatura = this.detallesAsignatura.alumnos || [];
-      // Generar el código QR para la asignatura
-      this.generateQR();
+      // Cargar la lista de alumnos de la asignatura desde la API
+      this.consumoAPI.obtenerAlumnos(this.detallesAsignatura.id).subscribe(
+        (response: any) => {
+          this.alumnosAsignatura = response.alumnos || [];
+        },
+        (error: any) => {
+          console.error('Error al cargar alumnos:', error);
+        }
+      );
     } else {
       console.error('No se recibieron detalles de la asignatura');
     }
@@ -51,7 +67,6 @@ export class AsignaturaPage implements OnInit {
     console.log('QR Code data:', this.qrAsignaturaData);
   }
   
-
   // Función para actualizar el estado de un alumno al escanear el QR
   actualizarEstadoAlumno(alumnoId: number) {
     const profesorId = history.state.id; // Asegúrate de obtener el ID del profesor desde el perfil
@@ -60,12 +75,8 @@ export class AsignaturaPage implements OnInit {
     this.consumoAPI.actualizarAsistencia(profesorId, cursoId, alumnoId).subscribe(
       (response: any) => {
         console.log('Asistencia actualizada:', response);
-
-        // Actualizamos el estado del alumno en la lista local para reflejar el cambio
-        const alumno = this.alumnosAsignatura.find(a => a.id === alumnoId);
-        if (alumno) {
-          alumno.status = 1; // Cambiamos el estado a "Presente"
-        }
+        // Recargar los datos de los alumnos después de la actualización
+        this.cargarDatosAsignatura();
       },
       (error: any) => {
         console.error('Error al actualizar asistencia:', error);
