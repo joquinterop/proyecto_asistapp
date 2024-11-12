@@ -7,9 +7,10 @@ import { retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConsumoapiService {
-  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }) };
+  // Ajuste de httpOptions sin la cabecera Access-Control-Allow-Origin
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   
-  apiURL = 'http://127.0.0.1:5000';  // Cambia la URL si es necesario
+  apiURL = 'http://127.0.0.1:5000';  
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,6 +28,7 @@ export class ConsumoapiService {
       retry(1)
     );
   }
+
   // Método para actualizar la asistencia de un alumno
   actualizarAsistencia(profesorId: number, cursoId: number, alumnoId: number): Observable<any> {
     const url = `${this.apiURL}/profesores/${profesorId}/cursos/${cursoId}/alumnos/${alumnoId}/asistencia`;
@@ -36,6 +38,6 @@ export class ConsumoapiService {
   }
 
   obtenerProfesorPorCurso(cursoId: number): Observable<any> {
-    return this.httpClient.get(`${this.apiURL}/cursos/${cursoId}/profesor`);
+    return this.httpClient.get(`${this.apiURL}/cursos/${cursoId}/profesor`, this.httpOptions);
   }
 }

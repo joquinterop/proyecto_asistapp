@@ -37,8 +37,8 @@ export class AsignaturaPage implements OnInit {
     const asignatura = this.detallesAsignatura.nombre;
     const seccion = this.detallesAsignatura.seccion;
     const fecha = format(new Date(), 'yyyy-MM-dd');
-    const profesorId = history.state.id;  // Usamos el ID del profesor
-    const cursoId = this.detallesAsignatura.id; // ID del curso actual
+    const profesorId = history.state.id;  
+    const cursoId = this.detallesAsignatura.id; 
   
     this.qrAsignaturaData = JSON.stringify({
       profesor_id: profesorId,
